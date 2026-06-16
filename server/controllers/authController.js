@@ -37,7 +37,7 @@ export const register = async (req, res) => {
     res.status(201).json({ user, accessToken });
   } catch (error) {
     console.error('Register error:', error);
-    res.status(500).json({ message: 'Server error during registration' });
+    res.status(500).json({ message: `Server error during registration: ${error.message}` });
   }
 };
 
@@ -73,7 +73,7 @@ export const login = async (req, res) => {
     res.json({ user, accessToken });
   } catch (error) {
     console.error('Login error:', error);
-    res.status(500).json({ message: 'Server error during login' });
+    res.status(500).json({ message: `Server error during login: ${error.message}` });
   }
 };
 
