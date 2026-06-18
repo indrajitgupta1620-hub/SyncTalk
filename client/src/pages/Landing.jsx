@@ -1,108 +1,195 @@
 import { Link } from 'react-router-dom';
-import { MessageSquare, Zap, Shield, Users, ArrowRight, Sparkles } from 'lucide-react';
-import Button from '../components/common/Button';
+import {
+  ArrowRight,
+  ShieldCheck,
+  Sparkles,
+  Zap,
+  Users,
+  MessageCircleMore,
+  CheckCircle2,
+} from 'lucide-react';
 
 const Landing = () => {
   return (
-    <div className="min-h-screen telegram-shell text-dark-50 flex flex-col font-sans overflow-hidden relative">
-      {/* Telegram-like Background */}
-      <div className="absolute inset-0 opacity-30 pointer-events-none"
-        style={{
-          backgroundImage:
-            'radial-gradient(circle at 10% 10%, rgba(46,166,255,0.22), transparent 28%), radial-gradient(circle at 90% 0%, rgba(120,140,160,0.12), transparent 25%), radial-gradient(circle at 30% 90%, rgba(46,166,255,0.12), transparent 30%)',
-        }}
-      />
+    <div className="landing-page min-h-screen text-slate-100 relative overflow-hidden">
+      {/* Background effects */}
+      <div className="landing-bg-orb landing-bg-orb--one" />
+      <div className="landing-bg-orb landing-bg-orb--two" />
+      <div className="landing-bg-grid" />
 
-      {/* Nav */}
-      <nav className="flex items-center justify-between px-6 md:px-10 py-5 z-10 telegram-header">
-        <div className="flex items-center gap-3">
-          <img
-            src="/synctalk-logo.svg"
-            alt="SyncTalk"
-            className="w-9 h-9 rounded-lg shadow-lg shadow-sky-500/20"
-          />
-          <div className="leading-tight">
-            <span className="text-xl font-bold tracking-tight text-[#e9f3fb]">SyncTalk</span>
-            <p className="text-[11px] text-[#89a2b6]">Real-time team messaging</p>
+      {/* Header */}
+      <header className="landing-header relative z-10">
+        <nav className="mx-auto max-w-7xl px-5 md:px-8 py-4 md:py-5 flex items-center justify-between">
+          <Link to="/" className="flex items-center gap-3">
+            <img
+              src="/synctalk-logo.svg"
+              alt="SyncTalk logo"
+              className="h-9 w-9 rounded-xl shadow-lg shadow-sky-500/20"
+            />
+            <div className="leading-tight">
+              <p className="text-base md:text-lg font-bold tracking-tight text-white">SyncTalk</p>
+              <p className="text-[11px] md:text-xs text-slate-300/80">Real-time team messaging</p>
+            </div>
+          </Link>
+
+          <div className="flex items-center gap-2 sm:gap-3">
+            <Link to="/login" className="landing-btn-ghost">
+              Log in
+            </Link>
+            <Link to="/register" className="landing-btn-primary">
+              Get started
+            </Link>
           </div>
-        </div>
-
-        <div className="flex items-center gap-3 md:gap-4">
-          <Link to="/login" className="text-sm font-medium text-[#9ab0c1] hover:text-white transition-colors">
-            Log in
-          </Link>
-          <Link to="/register" className="btn-primary text-sm px-4 py-2.5 rounded-lg">
-            Get Started
-          </Link>
-        </div>
-      </nav>
+        </nav>
+      </header>
 
       {/* Hero */}
-      <main className="flex-1 flex flex-col items-center justify-center text-center px-4 z-10 pt-8 pb-10">
-        <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#1c2a37]/90 border border-[#2b3f4f] mb-7 animate-fade-in">
-          <Sparkles size={14} className="text-[#63c6ff]" />
-          <span className="text-xs font-medium text-[#c9dbe8]">Telegram-style UI + AI chat summaries</span>
-        </div>
+      <main className="relative z-10">
+        <section className="mx-auto max-w-7xl px-5 md:px-8 pt-10 md:pt-16 pb-12 md:pb-20">
+          <div className="grid lg:grid-cols-2 gap-10 lg:gap-14 items-center">
+            <div>
+              <div className="landing-chip mb-5">
+                <Sparkles size={14} />
+                <span>Telegram-style redesign + AI summaries</span>
+              </div>
 
-        <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight mb-6 max-w-4xl animate-slide-up text-[#e8f2fb] leading-tight">
-          Fast team chat,
-          <br />
-          <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#67c9ff] to-[#2ea6ff]">
-            clean like Telegram.
-          </span>
-        </h1>
+              <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold leading-[1.05] tracking-tight">
+                Team chat that feels
+                <span className="landing-gradient-text"> fast, clean, and modern.</span>
+              </h1>
 
-        <p
-          className="text-base md:text-xl text-[#9fb3c2] max-w-2xl mb-9 animate-slide-up"
-          style={{ animationDelay: '100ms' }}
-        >
-          Secure, real-time communication built for software projects. Voice notes, instant updates,
-          and AI-powered summaries in a familiar, distraction-free interface.
-        </p>
+              <p className="mt-5 md:mt-6 text-slate-300/90 text-base md:text-lg leading-relaxed max-w-xl">
+                SyncTalk brings real-time collaboration, voice notes, and quick AI-powered
+                summaries in a distraction-free interface inspired by Telegram.
+              </p>
 
-        <div className="flex flex-col sm:flex-row gap-3.5 animate-slide-up" style={{ animationDelay: '200ms' }}>
-          <Link to="/register" className="btn-primary px-7 py-3 rounded-xl text-sm md:text-base">
-            Start chatting for free
-            <ArrowRight size={18} />
-          </Link>
-          <a href="#features" className="btn-secondary px-7 py-3 rounded-xl text-sm md:text-base">
-            View features
-          </a>
-        </div>
+              <div className="mt-8 flex flex-col sm:flex-row gap-3">
+                <Link to="/register" className="landing-btn-primary landing-btn-lg">
+                  Start chatting free
+                  <ArrowRight size={18} />
+                </Link>
+                <a href="#features" className="landing-btn-secondary landing-btn-lg">
+                  Explore features
+                </a>
+              </div>
+
+              <div className="mt-8 flex flex-wrap items-center gap-x-5 gap-y-2 text-sm text-slate-300/80">
+                <div className="flex items-center gap-2">
+                  <CheckCircle2 size={16} className="text-emerald-400" />
+                  <span>Instant messaging</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <CheckCircle2 size={16} className="text-emerald-400" />
+                  <span>Secure authentication</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <CheckCircle2 size={16} className="text-emerald-400" />
+                  <span>AI summaries</span>
+                </div>
+              </div>
+            </div>
+
+            {/* Hero preview card */}
+            <div className="landing-preview-card">
+              <div className="landing-preview-header">
+                <div className="flex items-center gap-3">
+                  <img
+                    src="/synctalk-logo.svg"
+                    alt="SyncTalk"
+                    className="h-8 w-8 rounded-lg"
+                  />
+                  <div>
+                    <p className="text-sm font-semibold text-white"># engineering-team</p>
+                    <p className="text-xs text-slate-300/75">23 members • 7 online</p>
+                  </div>
+                </div>
+                <span className="landing-online-pill">Live</span>
+              </div>
+
+              <div className="landing-preview-body">
+                <div className="landing-msg landing-msg--other">
+                  <p className="landing-msg-user">Aman</p>
+                  <p>Deployed the new auth patch. Can someone verify onboarding flow?</p>
+                </div>
+                <div className="landing-msg landing-msg--own">
+                  <p>Tested ✅ Login + register both working now.</p>
+                </div>
+                <div className="landing-msg landing-msg--other">
+                  <p className="landing-msg-user">Riya</p>
+                  <p>Great. Summarize this thread for release notes?</p>
+                </div>
+                <div className="landing-ai-summary">
+                  <Sparkles size={14} />
+                  <span>AI Summary: Auth patch deployed and validated. Ready for release.</span>
+                </div>
+              </div>
+
+              <div className="landing-preview-input">
+                <MessageCircleMore size={16} className="text-slate-300/75" />
+                <span className="text-sm text-slate-300/70">Write a message...</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Features */}
+        <section id="features" className="mx-auto max-w-7xl px-5 md:px-8 pb-16 md:pb-24">
+          <div className="grid md:grid-cols-3 gap-5 md:gap-6">
+            <FeatureCard
+              icon={Zap}
+              title="Real-time by default"
+              desc="Socket-powered messaging with fast delivery and smooth conversation flow."
+            />
+            <FeatureCard
+              icon={Sparkles}
+              title="AI quick summaries"
+              desc="Turn long threads into concise action points in one click."
+            />
+            <FeatureCard
+              icon={ShieldCheck}
+              title="Secure collaboration"
+              desc="JWT auth, protected rooms, and safe media handling for your team."
+            />
+          </div>
+
+          <div className="mt-6 grid md:grid-cols-2 gap-5 md:gap-6">
+            <MiniCard
+              icon={Users}
+              title="Built for teams"
+              desc="Group channels, member controls, and presence indicators keep everyone aligned."
+            />
+            <MiniCard
+              icon={MessageCircleMore}
+              title="Distraction-free interface"
+              desc="A Telegram-inspired layout focused on readability, speed, and clarity."
+            />
+          </div>
+        </section>
       </main>
-
-      {/* Features grid */}
-      <section id="features" className="max-w-6xl mx-auto px-4 pb-20 pt-6 z-10 w-full">
-        <div className="grid md:grid-cols-3 gap-6 md:gap-7">
-          <FeatureCard
-            icon={Zap}
-            title="Real-time speed"
-            desc="Socket.IO powered instant messaging. Messages land immediately with smooth, reliable sync."
-          />
-          <FeatureCard
-            icon={Sparkles}
-            title="AI Summaries"
-            desc="Catch up in seconds. Summarize long discussion threads into actionable bullet points."
-          />
-          <FeatureCard
-            icon={Shield}
-            title="Secure by design"
-            desc="JWT auth, membership checks, and safe media handling keep your team communication protected."
-          />
-        </div>
-      </section>
     </div>
   );
 };
 
 const FeatureCard = ({ icon: Icon, title, desc }) => (
-  <div className="glass p-7 rounded-2xl border border-[#2a3a48] hover:bg-[#1d2a36] transition-colors group">
-    <div className="w-11 h-11 bg-[#21303d] rounded-xl flex items-center justify-center mb-5 group-hover:scale-110 transition-transform">
-      <Icon className="text-[#5ec7ff]" size={22} />
+  <article className="landing-feature-card">
+    <div className="landing-feature-icon">
+      <Icon size={20} />
     </div>
-    <h3 className="text-lg font-semibold mb-2.5 text-[#e7f0f8]">{title}</h3>
-    <p className="text-[#98adbc] leading-relaxed text-sm">{desc}</p>
-  </div>
+    <h3>{title}</h3>
+    <p>{desc}</p>
+  </article>
+);
+
+const MiniCard = ({ icon: Icon, title, desc }) => (
+  <article className="landing-mini-card">
+    <div className="landing-mini-icon">
+      <Icon size={18} />
+    </div>
+    <div>
+      <h4>{title}</h4>
+      <p>{desc}</p>
+    </div>
+  </article>
 );
 
 export default Landing;
