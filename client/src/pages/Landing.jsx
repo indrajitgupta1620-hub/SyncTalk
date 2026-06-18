@@ -4,77 +4,90 @@ import Button from '../components/common/Button';
 
 const Landing = () => {
   return (
-    <div className="min-h-screen bg-dark-950 text-dark-50 flex flex-col font-sans overflow-hidden">
-      {/* Background Glows */}
-      <div className="absolute top-[-10%] left-[-10%] w-[500px] h-[500px] bg-primary-600/20 rounded-full blur-[120px] pointer-events-none" />
-      <div className="absolute bottom-[-10%] right-[-10%] w-[500px] h-[500px] bg-violet-600/20 rounded-full blur-[120px] pointer-events-none" />
+    <div className="min-h-screen telegram-shell text-dark-50 flex flex-col font-sans overflow-hidden relative">
+      {/* Telegram-like Background */}
+      <div className="absolute inset-0 opacity-30 pointer-events-none"
+        style={{
+          backgroundImage:
+            'radial-gradient(circle at 10% 10%, rgba(46,166,255,0.22), transparent 28%), radial-gradient(circle at 90% 0%, rgba(120,140,160,0.12), transparent 25%), radial-gradient(circle at 30% 90%, rgba(46,166,255,0.12), transparent 30%)',
+        }}
+      />
 
       {/* Nav */}
-      <nav className="flex items-center justify-between px-8 py-6 z-10">
-        <div className="flex items-center gap-2">
-          <div className="w-8 h-8 bg-gradient-to-br from-primary-500 to-violet-600 rounded-lg flex items-center justify-center shadow-lg shadow-primary-500/20">
-            <span className="font-bold text-white text-lg leading-none">S</span>
+      <nav className="flex items-center justify-between px-6 md:px-10 py-5 z-10 telegram-header">
+        <div className="flex items-center gap-3">
+          <img
+            src="/synctalk-logo.svg"
+            alt="SyncTalk"
+            className="w-9 h-9 rounded-lg shadow-lg shadow-sky-500/20"
+          />
+          <div className="leading-tight">
+            <span className="text-xl font-bold tracking-tight text-[#e9f3fb]">SyncTalk</span>
+            <p className="text-[11px] text-[#89a2b6]">Real-time team messaging</p>
           </div>
-          <span className="text-xl font-bold tracking-tight">SyncTalk</span>
         </div>
-        <div className="flex items-center gap-4">
-          <Link to="/login" className="text-sm font-medium text-dark-300 hover:text-white transition-colors">
+
+        <div className="flex items-center gap-3 md:gap-4">
+          <Link to="/login" className="text-sm font-medium text-[#9ab0c1] hover:text-white transition-colors">
             Log in
           </Link>
-          <Link to="/register">
-            <Button size="sm">Get Started</Button>
+          <Link to="/register" className="btn-primary text-sm px-4 py-2.5 rounded-lg">
+            Get Started
           </Link>
         </div>
       </nav>
 
       {/* Hero */}
-      <main className="flex-1 flex flex-col items-center justify-center text-center px-4 z-10">
-        <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-dark-800/80 border border-dark-700 mb-8 animate-fade-in">
-          <Sparkles size={14} className="text-primary-400" />
-          <span className="text-xs font-medium text-dark-200">Now with AI Chat Summaries</span>
+      <main className="flex-1 flex flex-col items-center justify-center text-center px-4 z-10 pt-8 pb-10">
+        <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#1c2a37]/90 border border-[#2b3f4f] mb-7 animate-fade-in">
+          <Sparkles size={14} className="text-[#63c6ff]" />
+          <span className="text-xs font-medium text-[#c9dbe8]">Telegram-style UI + AI chat summaries</span>
         </div>
-        
-        <h1 className="text-5xl md:text-7xl font-extrabold tracking-tight mb-6 max-w-4xl animate-slide-up">
-          Coordinate your team <br/>
-          <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary-400 to-violet-500">
-            without the noise.
+
+        <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight mb-6 max-w-4xl animate-slide-up text-[#e8f2fb] leading-tight">
+          Fast team chat,
+          <br />
+          <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#67c9ff] to-[#2ea6ff]">
+            clean like Telegram.
           </span>
         </h1>
-        
-        <p className="text-lg md:text-xl text-dark-400 max-w-2xl mb-10 animate-slide-up" style={{ animationDelay: '100ms' }}>
-          Secure, real-time communication built for software projects. Context-aware voice messages, instant AI summaries, and zero distractions.
+
+        <p
+          className="text-base md:text-xl text-[#9fb3c2] max-w-2xl mb-9 animate-slide-up"
+          style={{ animationDelay: '100ms' }}
+        >
+          Secure, real-time communication built for software projects. Voice notes, instant updates,
+          and AI-powered summaries in a familiar, distraction-free interface.
         </p>
-        
-        <div className="flex flex-col sm:flex-row gap-4 animate-slide-up" style={{ animationDelay: '200ms' }}>
-          <Link to="/register">
-            <Button size="lg" className="w-full sm:w-auto">
-              Start chatting for free
-              <ArrowRight size={18} />
-            </Button>
+
+        <div className="flex flex-col sm:flex-row gap-3.5 animate-slide-up" style={{ animationDelay: '200ms' }}>
+          <Link to="/register" className="btn-primary px-7 py-3 rounded-xl text-sm md:text-base">
+            Start chatting for free
+            <ArrowRight size={18} />
           </Link>
-          <a href="#features" className="btn-secondary px-8 py-3 w-full sm:w-auto flex items-center justify-center">
+          <a href="#features" className="btn-secondary px-7 py-3 rounded-xl text-sm md:text-base">
             View features
           </a>
         </div>
       </main>
 
       {/* Features grid */}
-      <section id="features" className="max-w-6xl mx-auto px-4 py-24 z-10">
-        <div className="grid md:grid-cols-3 gap-8">
-          <FeatureCard 
+      <section id="features" className="max-w-6xl mx-auto px-4 pb-20 pt-6 z-10 w-full">
+        <div className="grid md:grid-cols-3 gap-6 md:gap-7">
+          <FeatureCard
             icon={Zap}
             title="Real-time speed"
-            desc="Socket.IO powered instant messaging. Zero latency, instant delivery and read receipts."
+            desc="Socket.IO powered instant messaging. Messages land immediately with smooth, reliable sync."
           />
-          <FeatureCard 
+          <FeatureCard
             icon={Sparkles}
             title="AI Summaries"
-            desc="Catch up in seconds. One click summarizes 100s of messages into actionable bullet points."
+            desc="Catch up in seconds. Summarize long discussion threads into actionable bullet points."
           />
-          <FeatureCard 
+          <FeatureCard
             icon={Shield}
             title="Secure by design"
-            desc="JWT auth, strict membership checks, and safe media storage. Your team's data is locked down."
+            desc="JWT auth, membership checks, and safe media handling keep your team communication protected."
           />
         </div>
       </section>
@@ -83,12 +96,12 @@ const Landing = () => {
 };
 
 const FeatureCard = ({ icon: Icon, title, desc }) => (
-  <div className="glass p-8 rounded-3xl border border-dark-700/50 hover:bg-dark-800/80 transition-colors group">
-    <div className="w-12 h-12 bg-dark-800 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
-      <Icon className="text-primary-400" size={24} />
+  <div className="glass p-7 rounded-2xl border border-[#2a3a48] hover:bg-[#1d2a36] transition-colors group">
+    <div className="w-11 h-11 bg-[#21303d] rounded-xl flex items-center justify-center mb-5 group-hover:scale-110 transition-transform">
+      <Icon className="text-[#5ec7ff]" size={22} />
     </div>
-    <h3 className="text-xl font-semibold mb-3 text-dark-100">{title}</h3>
-    <p className="text-dark-400 leading-relaxed">{desc}</p>
+    <h3 className="text-lg font-semibold mb-2.5 text-[#e7f0f8]">{title}</h3>
+    <p className="text-[#98adbc] leading-relaxed text-sm">{desc}</p>
   </div>
 );
 

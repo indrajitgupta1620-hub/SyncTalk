@@ -13,65 +13,142 @@
     font-family: 'Inter', system-ui, -apple-system, sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    @apply bg-dark-950 text-dark-100;
+    background-color: #0b141a;
+    color: #e5e9ec;
+    background-image:
+      radial-gradient(circle at 20% 10%, rgba(0, 136, 204, 0.1), transparent 45%),
+      radial-gradient(circle at 80% 0%, rgba(46, 60, 72, 0.25), transparent 40%);
+    min-height: 100vh;
+  }
+
+  #root {
+    min-height: 100vh;
   }
 
   ::-webkit-scrollbar {
-    width: 6px;
+    width: 7px;
+    height: 7px;
   }
+
   ::-webkit-scrollbar-track {
-    @apply bg-dark-900;
+    background: #101921;
   }
+
   ::-webkit-scrollbar-thumb {
-    @apply bg-dark-600 rounded-full;
+    background: #31414f;
+    border-radius: 999px;
   }
+
   ::-webkit-scrollbar-thumb:hover {
-    @apply bg-dark-500;
+    background: #3d5161;
   }
 }
 
 @layer components {
   .panel {
-    @apply bg-dark-800 border border-dark-700 rounded-xl p-6;
+    @apply rounded-2xl p-6;
+    background: linear-gradient(180deg, #1d2733 0%, #17212b 100%);
+    border: 1px solid #22303d;
+  }
+
+  .glass {
+    background: rgba(23, 33, 43, 0.88);
+    backdrop-filter: blur(8px);
   }
 
   .btn-primary {
-    @apply bg-primary-600 text-white font-medium px-5 py-2.5 rounded-lg
-    hover:bg-primary-500 transition-colors duration-150;
+    @apply inline-flex items-center justify-center gap-2 font-semibold px-5 py-2.5 rounded-xl text-white transition-all duration-200;
+    background: linear-gradient(135deg, #2ea6ff 0%, #1992f5 100%);
+    box-shadow: 0 10px 25px rgba(25, 146, 245, 0.24);
+  }
+
+  .btn-primary:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 12px 30px rgba(25, 146, 245, 0.3);
+    filter: brightness(1.05);
   }
 
   .btn-secondary {
-    @apply bg-dark-700 text-dark-200 font-medium px-5 py-2.5 rounded-lg
-    border border-dark-600 hover:bg-dark-600 transition-colors duration-150;
+    @apply inline-flex items-center justify-center gap-2 font-medium px-5 py-2.5 rounded-xl transition-colors duration-200;
+    background-color: #22303d;
+    color: #dbe7f0;
+    border: 1px solid #2c3f4d;
+  }
+
+  .btn-secondary:hover {
+    background-color: #2a3a48;
   }
 
   .btn-ghost {
-    @apply text-dark-300 font-medium px-4 py-2 rounded-lg
-    hover:bg-dark-800 hover:text-dark-100 transition-colors duration-150;
+    @apply font-medium px-4 py-2 rounded-lg transition-colors duration-200;
+    color: #9eb1bf;
+  }
+
+  .btn-ghost:hover {
+    color: #e6f3ff;
+    background-color: rgba(52, 70, 86, 0.55);
   }
 
   .input-field {
-    @apply w-full bg-dark-800 border border-dark-600 text-dark-100
-    px-4 py-2.5 rounded-lg
-    placeholder:text-dark-500
-    focus:outline-none focus:border-primary-500
-    transition-colors duration-150;
+    @apply w-full px-4 py-2.5 rounded-xl transition-colors duration-200;
+    background: #17212b;
+    border: 1px solid #263746;
+    color: #e6eef5;
+  }
+
+  .input-field::placeholder {
+    color: #71879a;
+  }
+
+  .input-field:focus {
+    outline: none;
+    border-color: #2ea6ff;
+    box-shadow: 0 0 0 3px rgba(46, 166, 255, 0.18);
   }
 
   .badge {
-    @apply inline-flex items-center px-2 py-0.5 rounded-md text-xs font-medium
-    bg-primary-500/15 text-primary-300;
+    @apply inline-flex items-center px-2 py-0.5 rounded-md text-xs font-semibold;
+    background-color: rgba(46, 166, 255, 0.16);
+    color: #80d0ff;
   }
 
   .status-online {
-    @apply w-2.5 h-2.5 bg-emerald-500 rounded-full border-2 border-dark-900;
+    @apply w-2.5 h-2.5 rounded-full;
+    background: #2ed47a;
+    border: 2px solid #17212b;
   }
 
   .status-offline {
-    @apply w-2.5 h-2.5 bg-dark-500 rounded-full border-2 border-dark-900;
+    @apply w-2.5 h-2.5 rounded-full;
+    background: #5b6e7d;
+    border: 2px solid #17212b;
   }
 
   .typing-dot {
-    @apply w-1.5 h-1.5 bg-dark-400 rounded-full animate-pulse;
+    @apply w-1.5 h-1.5 rounded-full animate-pulse;
+    background: #8fa5b6;
+  }
+
+  .telegram-shell {
+    background: linear-gradient(180deg, #0e1621 0%, #0b141a 100%);
+  }
+
+  .telegram-header {
+    background: rgba(23, 33, 43, 0.9);
+    border-bottom: 1px solid #243240;
+  }
+
+  .telegram-bubble-own {
+    background: linear-gradient(135deg, #2ea6ff 0%, #1992f5 100%);
+    color: #ffffff;
+    border-radius: 1.1rem 1.1rem 0.4rem 1.1rem;
+    box-shadow: 0 8px 20px rgba(25, 146, 245, 0.24);
+  }
+
+  .telegram-bubble-other {
+    background: #1f2c38;
+    color: #e7edf3;
+    border-radius: 1.1rem 1.1rem 1.1rem 0.4rem;
+    border: 1px solid #2a3a48;
   }
 }
