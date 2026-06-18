@@ -9,7 +9,7 @@ const api = axios.create({
 
 // Request interceptor — attach access token
 api.interceptors.request.use((config) => {
-  const token = localStorage.getItem('accessToken');
+  const token = sessionStorage.getItem('accessToken');
   if (token) {
     config.headers.Authorization = `Bearer ${token}`;
   }
@@ -34,11 +34,11 @@ api.interceptors.response.use(
           {},
           { withCredentials: true }
         );
-        localStorage.setItem('accessToken', data.accessToken);
+        sessionStorage.setItem('accessToken', data.accessToken);
         originalRequest.headers.Authorization = `Bearer ${data.accessToken}`;
         return api(originalRequest);
       } catch (refreshError) {
-        localStorage.removeItem('accessToken');
+        sessionStorage.removeItem('accessToken');
         window.location.href = '/login';
         return Promise.reject(refreshError);
       }

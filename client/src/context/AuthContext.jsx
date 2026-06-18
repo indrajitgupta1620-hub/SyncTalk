@@ -12,7 +12,7 @@ export const AuthProvider = ({ children }) => {
   // Check if user is already logged in on mount
   useEffect(() => {
     const initAuth = async () => {
-      const token = localStorage.getItem('accessToken');
+      const token = sessionStorage.getItem('accessToken');
       if (!token) {
         setLoading(false);
         return;
@@ -25,11 +25,11 @@ export const AuthProvider = ({ children }) => {
         // Try to refresh the token
         try {
           const { data } = await refreshToken();
-          localStorage.setItem('accessToken', data.accessToken);
+          sessionStorage.setItem('accessToken', data.accessToken);
           const meRes = await getMe();
           setUser(meRes.data);
         } catch {
-          localStorage.removeItem('accessToken');
+          sessionStorage.removeItem('accessToken');
         }
       } finally {
         setLoading(false);
@@ -43,7 +43,7 @@ export const AuthProvider = ({ children }) => {
     setError(null);
     try {
       const { data } = await loginUser({ email, password });
-      localStorage.setItem('accessToken', data.accessToken);
+      sessionStorage.setItem('accessToken', data.accessToken);
       setUser(data.user);
       return data;
     } catch (err) {
@@ -57,7 +57,7 @@ export const AuthProvider = ({ children }) => {
     setError(null);
     try {
       const { data } = await registerUser({ username, email, password });
-      localStorage.setItem('accessToken', data.accessToken);
+      sessionStorage.setItem('accessToken', data.accessToken);
       setUser(data.user);
       return data;
     } catch (err) {
@@ -73,7 +73,7 @@ export const AuthProvider = ({ children }) => {
     } catch {
       // Continue logout even if API call fails
     } finally {
-      localStorage.removeItem('accessToken');
+      sessionStorage.removeItem('accessToken');
       setUser(null);
     }
   }, []);
